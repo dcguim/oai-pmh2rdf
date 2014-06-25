@@ -1,42 +1,6 @@
 
-Web Interface to interact with the OAI-PMH interface of Dspace:
+Objetivos
+  + Traduzir the XSLT "XSLT Bible"
+  + Prover alguns atalhos para agilizar o aprendizado.
 
-http://re.cs.uct.ac.za/
-
-* Biblioteca Python
-
-Python Library that implements the OAI-PMH protocol:
-http://www.infrae.com/download/OAI/pyoai
-
-* Testes
-
-For tests, we can use curl to get data without python:
-
-curl "http://bibliotecadigital.fgv.br/oai/request?verb=ListRecords&metadataPrefix=rdf&set=hdl_10438_3258" -o ebape0.xml
-
-Quando o set é incompleto... no final tem um resumptionToken. Que pode ser usado como:
-
-curl "http://bibliotecadigital.fgv.br/oai/request?verb=ListRecords&resumptionToken=0001-01-01T00%3A00%3A00Z%2F9999-12-31T23%3A59%3A59Z%2Fhdl_10438_3258%2Frdf%2F100" -o ebape1.xml
-
-
-* Formatos
-
-http://bibliotecadigital.fgv.br/oai/request?verb=ListMetadataFormats
-
-Prefix=[oai_dc]
-NameSpace=[http://www.openarchives.org/OAI/2.0/oai_dc/]
-Schema=[http://www.openarchives.org/OAI/2.0/oai_dc.xsd]
-
-Prefix=[rdf]
-NameSpace=[http://www.openarchives.org/OAI/2.0/rdf/]
-Schema=[http://www.openarchives.org/OAI/2.0/rdf.xsd]
-
-Prefix=[ore]
-NameSpace=[http://www.w3.org/2005/Atom]
-Schema=[http://tweety.lanl.gov/public/schemas/2008-06/atom-tron.sch]
-
-Prefix=[mets]
-NameSpace=[http://www.loc.gov/METS/]
-Schema=[http://www.loc.gov/standards/mets/mets.xsd]
-
-
+"XSLT Bible" http://www.cafeconleche.org/books/bible2/chapters/ch17.html
