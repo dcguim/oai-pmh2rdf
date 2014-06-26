@@ -110,7 +110,9 @@ Quando o nó combina o padrão template rule o processador outputa the rule`s te
       0.0001785</P>
 </html> 
 * Sintaxe
-** Header
+
+* 
+er
 *** <?xml version="1.0" ?>
     Indica a versao do xml a ser usada. Opcional, porém recomendado.
 *** <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
