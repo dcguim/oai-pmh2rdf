@@ -1,5 +1,5 @@
 * Transformador XML Online
-  http://www.freeformatter.com/
+  [[http://www.freeformatter.com/][Interpretador Online]]
 * Sobre XSL
 ** XSL tem duas partes: que funcionam independentemente uma parte que lida 
 com a transformação e outra que lida com a formatação. Não obrigatoriamente um
@@ -128,7 +128,6 @@ Quando o nó combina o padrão template rule o processador outputa the rule`s te
     version é um atributo.
 *** Elementos importantes
 **** [[http://www.w3schools.com/xsl/el_apply-imports.asp][Referência de Elementos]]
-
 * EGGHTG
 ** GHDFGFDG
 *** ISSO É SOBRE
