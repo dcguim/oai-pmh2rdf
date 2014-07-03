@@ -1986,7 +1986,7 @@ xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives
                 <mods:name>
                   <mods:role>
                     <mods:roleTerm type="text">
-                    other</mods:roleTerm>
+		      other</mods:roleTerm>
                   </mods:role>
                   <mods:namePart>Fontes Filho, Joaquim
                   Rubens</mods:namePart>
