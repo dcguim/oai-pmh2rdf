@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
 <!DOCTYPE rdf:RDF [
  <!ENTITY  xsd "http://www.w3.org/2001/XMLSchema#"> 
  <!ENTITY bibo "http://purl.org/ontology/bibo/">
@@ -55,38 +54,37 @@
     <rdf:Description rdf:about="{@OBJID}">
       <rdf:type rdf:resource="&bibo;Thesis"/>
       <bibo:degree rdf:resource="&bibo;degrees/ms" /> 
-      <dc:title> <xsl:value-of select="normalize-space(mets:dmdSec/mets:mdWrap/mets:xmlData/mods:titleInfo)"/> </dc:title>
-      <xsl:apply-templates select="mets:dmdSec//mods:role"/>
+      <dc:title> 
+	<xsl:value-of select="normalize-space(mets:dmdSec/mets:mdWrap/mets:xmlData/mods:titleInfo)"/> 
+      </dc:title>
+      <xsl:apply-templates select="descendant::mods:role"/>
     </rdf:Description>
-    <xsl:apply-templates select="mets:dmdSec//mods:name"/> <!-- Realize that at this point I already generated the id for the subtree rooted in mods:name -->
   </xsl:template>
 
-<xsl:template match="mods:role[normalize-space(mods:roleTerm)='author']">
-  <dc:author>
-  <xsl:value-of select="concat('#person-',generate-id(parent::mods:name))"/></dc:author>
- </xsl:template>
- 
-<xsl:template match="mods:role[normalize-space(mods:roleTerm)='advisor']">
-  <dc:advisor>
-  <xsl:value-of select="concat('#person-',generate-id(parent::mods:name))"/></dc:advisor>
- </xsl:template>
+  <xsl:template match="mods:role[normalize-space(mods:roleTerm)='author']">
+    <dc:author>
+      <xsl:value-of select="concat('#person-',generate-id(parent::mods:name))"/>
+    </dc:author>
+  </xsl:template>
+  
+  <xsl:template match="mods:role[normalize-space(mods:roleTerm)='advisor']">
+    <dc:advisor>
+      <xsl:value-of select="concat('#person-',generate-id(parent::mods:name))"/>
+    </dc:advisor>
+  </xsl:template>
 
-<xsl:template match="mods:role[normalize-space(mods:roleTerm)='other']">
-  <dc:other>
-  <xsl:value-of select="concat('#person-',generate-id(parent::mods:name))"/></dc:other>
- </xsl:template>
- 
-<xsl:template match ="mods:name">
- <rdf:Description>
+  <xsl:template match ="mods:name">
+    <rdf:Description>
       <xsl:attribute name="rdf:about">
 	<xsl:value-of select="concat('#person-',generate-id(.))"/>
       </xsl:attribute>
-     <rdf:type rdf:resource="&foaf;Person"/>
-     <foaf:name> <xsl:value-of select="normalize-space(child::mods:namePart)"/> </foaf:name>
-  </rdf:Description>
-</xsl:template>
+      <rdf:type rdf:resource="&foaf;Person"/>
+      <foaf:name> <xsl:value-of select="normalize-space(child::mods:namePart)"/> </foaf:name>
+    </rdf:Description>
+  </xsl:template>
 
-
+  <xsl:template match="*|@*">
+  </xsl:template>
 
 <!--
  Alexandre`s code:

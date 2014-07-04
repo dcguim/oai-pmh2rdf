@@ -1,2 +1,0 @@
-** SemanticLib
- This project aims to make XSL Transformations to the XML files (obtained through OAI-PMH protocol) from FGV`s digital library (http://sistema.bibliotecas.fgv.br/) to RDF files compatible with SLattes project (https://github.com/arademaker/SLattes) ontology.
