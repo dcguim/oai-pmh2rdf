@@ -34,6 +34,9 @@
 
   <xsl:template match="oai:OAI-PMH">
     <rdf:RDF>
+      <xsl:attribute name="xml:base">
+	<xsl:value-of select="concat(normalize-space(oai:request),'/set/',oai:request/@set)"/>
+      </xsl:attribute>
       <xsl:apply-templates select="oai:ListRecords" />
     </rdf:RDF>
   </xsl:template>
@@ -43,68 +46,73 @@
   </xsl:template>
 
   <xsl:template match="oai:record">
-    <xsl:apply-templates select="oai:metadata" />
+    <rdf:Description rdf:about="{normalize-space(oai:header/oai:identifier)}">
+      <xsl:attribute name="xml:base">
+	<xsl:value-of select="normalize-space(oai:header/oai:identifier)"/>
+      </xsl:attribute>
+      <xsl:apply-templates select="oai:metadata" />
+    </rdf:Description>
   </xsl:template>
 
   <xsl:template match="oai:metadata">
     <xsl:apply-templates select="mets:mets" />
   </xsl:template>
-
+  
   <xsl:template match="mets:mets">
-    <rdf:Description rdf:about="{@OBJID}">
+    <xsl:apply-templates select="descendant::mets:xmlData" />
+  </xsl:template>
+
+  <xsl:template match="mets:xmlData">
+    <dc:title> <xsl:value-of select="normalize-space(mods:titleInfo)"/> </dc:title>
+    <bibo:uri rdf:datatype="&xsd;anyURI"> 
+      <xsl:value-of select="mods:identifier"/> 
+    </bibo:uri>
+    <dc:date rdf:datatype="&xsd;dateTime">
+      <xsl:value-of select="mods:originInfo/mods:dateIssued"/>
+    </dc:date>
+    <dc:language> <xsl:value-of select="mods:language/mods:languageTerm"/> </dc:language>
+    <bibo:abstract>
+      <xsl:value-of select="mods:abstract" />
+    </bibo:abstract>
+    <xsl:apply-templates select="mods:genre"/>
+    <xsl:apply-templates select="mods:subject" />
+    <xsl:apply-templates select="mods:name"/>
+  </xsl:template>
+
+  <xsl:template match="mods:subject/mods:topic">
+    <dcterms:subject> <xsl:value-of select="mods:topic" /> </dcterms:subject>
+  </xsl:template>
+
+  <xsl:template match="mods:subject/@authority">
+    <dcterms:subject> <xsl:value-of select="." /> </dcterms:subject>
+  </xsl:template>
+
+  <xsl:template match="mods:genre">
+    <xsl:if test="normalize-space(.) = 'Dissertation'">
       <rdf:type rdf:resource="&bibo;Thesis"/>
       <bibo:degree rdf:resource="&bibo;degrees/ms" /> 
-      <dc:title> 
-	<xsl:value-of select="normalize-space(mets:dmdSec/mets:mdWrap/mets:xmlData/mods:titleInfo)"/> 
-      </dc:title>
-      <xsl:apply-templates select="descendant::mods:role"/>
-    </rdf:Description>
+    </xsl:if>
   </xsl:template>
 
-  <xsl:template match="mods:role[normalize-space(mods:roleTerm)='author']">
-    <dc:author>
-      <xsl:value-of select="concat('#person-',generate-id(parent::mods:name))"/>
-    </dc:author>
+  <xsl:template match="mods:name[normalize-space(mods:role/mods:roleTerm)='author']">
+    <dc:author> <xsl:apply-templates select="mods:namePart"/> </dc:author>
   </xsl:template>
   
-  <xsl:template match="mods:role[normalize-space(mods:roleTerm)='advisor']">
-    <dc:advisor>
-      <xsl:value-of select="concat('#person-',generate-id(parent::mods:name))"/>
-    </dc:advisor>
+  <xsl:template match="mods:name[normalize-space(mods:role/mods:roleTerm)='advisor']">
+    <dc:advisor> <xsl:apply-templates select="mods:namePart"/> </dc:advisor>
   </xsl:template>
 
-  <xsl:template match ="mods:name">
+  <xsl:template match ="mods:namePart">
     <rdf:Description>
-      <xsl:attribute name="rdf:about">
-	<xsl:value-of select="concat('#person-',generate-id(.))"/>
+      <xsl:attribute name="rdf:ID">
+	<xsl:value-of select="generate-id(.)"/>
       </xsl:attribute>
       <rdf:type rdf:resource="&foaf;Person"/>
-      <foaf:name> <xsl:value-of select="normalize-space(child::mods:namePart)"/> </foaf:name>
+      <foaf:name> <xsl:value-of select="normalize-space(.)"/> </foaf:name>
     </rdf:Description>
   </xsl:template>
 
   <xsl:template match="*|@*">
   </xsl:template>
 
-<!--
- Alexandre`s code:
-
-  <xsl:template match="mods:name[mods:role/mods:roleTerm ='advisor']">
-    <dc:advisor> <xsl:value-of select="child::mods:namePart"/> </dc:advisor>
-  </xsl:template>
-<
-  <xsl:template match="mods:namePart">
-     <rdf:Description>
-      <xsl:attribute name="rdf:about">
-	<xsl:value-of select="concat('#person-',generate-id(.))"/>
-      </xsl:attribute>
-    </rdf:Description>
-    <rdf:type rdf:resource="&foaf;Person"/>
-    <foaf:name> <xsl:value-of select="normalize-space(.)"/> </foaf:name>
-  </xsl:template>
-  
- <xsl:template match="role[normalize-space(roleTerm)='advisor']">
-   <dc:advisor> <xsl:value-of select="parent::./namePart" /> </dc:advisor>
- </xsl:template>
--->
 </xsl:stylesheet>

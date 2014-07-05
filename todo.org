@@ -1,0 +1,35 @@
+
+* Tarefas
+
+** TODO testar com todas as coleções de teses e dissertações
+** TODO definir quais coleções/revistas do OJS considerar
+** TODO construir transformações para todos os outros formatos suportados pelo OJS e DSpace
+** TODO identificar problemas com metadados do DSpace e OJS
+
+* Problemas com metadados
+
+** o mets do Dspace parece não estar gerando o dc:language corretamente
+
+Vide
+http://bibliotecadigital.fgv.br/dspace/handle/10438/9792?show=full e
+http://bibliotecadigital.fgv.br/oai/request?verb=ListRecords&metadataPrefix=mets&set=hdl_10438_10191
+
+** não conseguimos diferenciar tese de doutorado e dissertação de mestrado
+** Itens com resumos em pt/en não estão diferenciando as versões
+
+O language attr não está corretamente informado. vide
+http://bibliotecadigital.fgv.br/dspace/handle/10438/11831?show=full
+
+** coleções indevidas? no OJS
+
+Deveria esta publicação
+http://bibliotecadigital.fgv.br/ojs/index.php/aif estar no OJS ou
+Dspace.
+ 
+* Links
+
+- http://bibliotecadigital.fgv.br/ojs/index.php/revfgvonline/oai/?verb=ListSets
+- http://bibliotecadigital.fgv.br/ojs/index.php/revfgvonline/oai/?verb=ListMetadataFormats
+- http://bibliotecadigital.fgv.br/oai/request?verb=ListSets
+- http://bibliotecadigital.fgv.br/oai/request?verb=ListMetadataFormats
+
