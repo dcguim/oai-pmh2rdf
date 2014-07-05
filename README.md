@@ -3,9 +3,7 @@
 
 We plan to create a set of XSL transformations to transform XML files,
 retrieved from [OAI-PMH](http://en.wikipedia.org/wiki/OAI-PMH)
-requests to RDF.
-
-The RDF will be based on:
+requests to RDF. The RDF will be based on:
 
 1. The vocabularies used in 
    [SLattes](https://github.com/arademaker/SLattes).
@@ -33,11 +31,9 @@ produced RDF file.
 
 - [Bibo Ontology](https://bibotools.googlecode.com/svn/bibo-ontology/trunk/doc/contents.html)
 - [VIVO-ISF Ontology](https://wiki.duraspace.org/display/VIVO/VIVO-ISF+Ontology)
-
 - [Chapter 17 of the XML Bible](http://www.cafeconleche.org/books/bible2/chapters/ch17.html)
 - [RDF/XML Syntax](http://www.w3.org/TR/rdf-syntax-grammar/)
 - [OAI-PMH Protocol](http://www.openarchives.org)
-
 - [Raptor command line programs](http://librdf.org)
 - http://xmlsoft.org/XSLT/xsltproc2.html
 - http://curl.haxx.se
