@@ -79,11 +79,11 @@
     <xsl:apply-templates select="mods:name"/>
   </xsl:template>
 
-  <xsl:template match="mods:subject/mods:topic">
+  <xsl:template match="mods:subject[mods:topic]">
     <dcterms:subject> <xsl:value-of select="mods:topic" /> </dcterms:subject>
   </xsl:template>
 
-  <xsl:template match="mods:subject/@authority">
+  <xsl:template match="mods:subject[@authority]">
     <dcterms:subject> <xsl:value-of select="." /> </dcterms:subject>
   </xsl:template>
 

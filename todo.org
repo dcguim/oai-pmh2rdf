@@ -28,8 +28,8 @@ Dspace.
  
 * Links
 
-- http://bibliotecadigital.fgv.br/ojs/index.php/revfgvonline/oai/?verb=ListSets
-- http://bibliotecadigital.fgv.br/ojs/index.php/revfgvonline/oai/?verb=ListMetadataFormats
+- http://bibliotecadigital.fgv.br/ojs/index.php/rbe/oai/?verb=ListSets
+- http://bibliotecadigital.fgv.br/ojs/index.php/rbe/oai/?verb=ListMetadataFormats
 - http://bibliotecadigital.fgv.br/oai/request?verb=ListSets
 - http://bibliotecadigital.fgv.br/oai/request?verb=ListMetadataFormats
 
